@@ -1,0 +1,57 @@
+<mat-card>
+  <div mat-subheader>
+    <h1>Listado Especialidades</h1>
+  </div>
+
+  <br />
+  <div>
+    <mat-form-field>
+      <mat-label>Filtrar por estado</mat-label>
+      <mat-select
+        [(value)]="selectedEstado"
+        (selectionChange)="filtrarEspecialidadesPorEstado()"
+      >
+        <mat-option value="">Todos</mat-option>
+        <mat-option value="true">Activo</mat-option>
+        <mat-option value="false">No activo</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      routerLink="/admin/add-especialidad"
+      mat-raised-button
+      color="primary"
+    >
+      Agregar especialidad
+    </button>
+  </div>
+  <mat-list>
+    <mat-list-item
+      *ngFor="
+        let e of selectedEstado !== null
+          ? especialidadesPorEstado
+          : especialidades
+      "
+    >
+      <mat-icon mat-list-icon>beenhere</mat-icon>
+      <div mat-line>{{ e.id }}</div>
+      <div mat-line>{{ e.descripcion }}</div>
+      <div mat-line>{{ e.estado ? "Activo" : "No activo" }}</div>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-card-actions>
+          <!--editar-->
+          <button
+            class="btn btn-warning"
+            [routerLink]="'/admin/especialidad/' + e.id"
+          >
+            <mat-icon> border_color</mat-icon>
+          </button>
+          <!--eliminar o desactivar-->
+          <button class="btn btn-danger" (click)="eliminarEsp(e.id)">
+            <mat-icon>restore_from_trash</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-list-item>
+  </mat-list>
+</mat-card>

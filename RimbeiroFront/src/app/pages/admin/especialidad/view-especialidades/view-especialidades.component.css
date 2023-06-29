@@ -1,0 +1,15 @@
+/* Ajusta el ancho de la barra de búsqueda */
+.mat-form-field {
+    width: 500px;
+    margin-right: 50px; 
+    margin-left: 15px;
+  }
+  
+ 
+table{
+    width: 100%;
+}
+
+.btn{
+    margin-right: 10px;
+}

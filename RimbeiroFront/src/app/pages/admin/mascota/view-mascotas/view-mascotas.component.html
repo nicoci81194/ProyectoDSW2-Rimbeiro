@@ -1,0 +1,65 @@
+<mat-card>
+    <div mat-subheader>
+        <h1>Listado general de Mascotas</h1>
+    </div>
+    <br>
+    <div>
+        <mat-form-field>
+            <mat-label>Filtrar por día de la semana</mat-label>
+            <mat-select [(ngModel)]="selectedEspecie" (selectionChange)="filtrarMascotasPorEspecie()">
+              <mat-option value="">Todos</mat-option>
+              <mat-option value="perro">perro</mat-option>
+              <mat-option value="gato">gato</mat-option>
+              <mat-option value="conejo">conejo</mat-option>
+              <mat-option value="loro">loro</mat-option>
+              <mat-option value="perico">perico</mat-option>
+              <mat-option value="hamster">hamster</mat-option>
+              <mat-option value="huron">huron</mat-option>
+              <mat-option value="otro">otro</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button routerLink="/admin/add-mascota" mat-raised-button color="primary" *ngIf="login.getUserRole() === 'ADMIN'">Agregar Mascota </button>   
+      </div>
+    <br>
+
+    <table class="table table-bordered table-striped table-sm dt-responsive tabla">
+        <thead>
+            <tr>        
+                <th>Nombre</th>
+                <th>Especie</th>
+                <th>Raza</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Peso</th>
+                <th>Caracteristicas</th>
+                <th>Estado</th>
+                <th>Reservas</th>
+                <th *ngIf="login.getUserRole() === 'VETERINARIO'"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="
+            let m of selectedEspecie !== null
+              ? mascotasPorEspecie
+              : mascotas
+          ">
+                <td>{{m.nombre}}</td>
+                <td>{{m.especie}}</td>
+                <td>{{m.raza}}</td>
+                <td>{{m.fechaNacimiento | date:'yyyy-MM-dd'}}</td>
+                <td>{{m.peso}}</td>
+                <td>{{m.caracteristicas}}</td>
+                <td>{{m.estado ? "Activo" : "No activo"}}</td>
+                <td [width]="50">
+                    <!--muestra las reservas x usuario-->
+                    <button [routerLink]="getProfileLink(m.id)" class="btn btn-success"><mat-icon>assignment</mat-icon></button>
+                </td>
+                <td [width]="130" *ngIf="login.getUserRole() !== 'VETERINARIO'">
+                    <!--editar-->
+                    <button class="btn btn-warning" [routerLink]="'/admin/mascota/'+m.id"><mat-icon> border_color</mat-icon> </button>
+                    <!--eliminar o desactivar-->
+                    <button class="btn btn-danger" (click)= "eliminarMas(m.id)"><mat-icon>restore_from_trash</mat-icon></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mat-card>

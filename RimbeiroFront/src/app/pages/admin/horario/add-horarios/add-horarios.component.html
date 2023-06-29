@@ -1,0 +1,58 @@
+<mat-card>
+    <h1>Agregar Nuevo Horario</h1>
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form (ngSubmit)= "guardarHorario()">
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Dias de Semanas</mat-label>
+                            <input
+                            autofocus
+                            type="text"
+                            name="diaSemana"
+                            matInput
+                            placeholder="Ingresar Dias"
+                            [(ngModel)] = "horario.diaSemana"
+                            >
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Hora de Entrada</mat-label>
+                            <input
+                            autofocus
+                            type="text"
+                            name="horaInicio"
+                            matInput
+                            placeholder="Ingresar Hora"
+                            [(ngModel)] = "horario.horaInicio"
+                            >
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Hora de Salida</mat-label>
+                            <input
+                            autofocus
+                            type="text"
+                            name="horaFin"
+                            matInput
+                            placeholder="Ingresar Hora"
+                            [(ngModel)] = "horario.horaFin"
+                            >
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="mt20 w100">
+                            <mat-label> Veterinarios </mat-label>
+                            <mat-select name="veterinario" [(ngModel)] = "horario.veterinario.id" required>
+                                <mat-option *ngFor = "let v of veterinarios" [value] = "v.id">
+                                    Dr. {{v.nombres}} {{v.apellidoPaterno}} - {{v.especialidad.descripcion}}                              
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <div class="container text-center">
+                            <button mat-raised-button color="primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

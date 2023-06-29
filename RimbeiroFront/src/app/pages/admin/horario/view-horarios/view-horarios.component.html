@@ -1,0 +1,59 @@
+<mat-card>
+    <div mat-subheader>
+        <h1>Listado general de Horarios</h1>
+    </div>
+    <br>
+
+<div>
+    <mat-form-field>
+        <mat-label>Filtrar por día de la semana</mat-label>
+        <mat-select [(ngModel)]="selectedDia" (selectionChange)="filtrarHorariosPorDia()">
+          <mat-option value="">Todos</mat-option>
+          <mat-option value="Lunes">Lunes</mat-option>
+          <mat-option value="Martes">Martes</mat-option>
+          <mat-option value="Miercoles">Miércoles</mat-option>
+          <mat-option value="Jueves">Jueves</mat-option>
+          <mat-option value="Viernes">Viernes</mat-option>
+          <mat-option value="Sabado">Sábado</mat-option>
+          <mat-option value="Domingo">Domingo</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button routerLink="/admin/add-horario" mat-raised-button color="primary" *ngIf="login.getUserRole() === 'ADMIN'">Agregar Horario</button> 
+  </div>
+    <br>
+
+    <table class="table table-bordered table-striped table-sm dt-responsive tabla">
+        <thead>
+            <tr>  
+                <th>Veterinario</th> 
+                <th>Especialidad</th>     
+                <th>Dias de la semana</th>
+                <th>Hora de Inicio</th>
+                <th>Hora de Termino</th>               
+                <th>Estado</th>
+                <th *ngIf="login.getUserRole() !== 'VETERINARIO'"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="
+            let h of selectedDia !== null
+              ? horariosPorDia
+              : horarios
+          ">
+                <td>Dr. {{h.veterinario.nombres}} {{h.veterinario.apellidoPaterno}}</td>
+                <td>{{h.veterinario.especialidad.descripcion}}</td>
+                <td>{{h.diaSemana}}</td>
+                <td>{{h.horaInicio}}</td>
+                <td>{{h.horaFin}}</td>
+                <td>{{h.estado ? "Activo" : "No activo"}}</td>
+                <td [width]="130" *ngIf="login.getUserRole() !== 'VETERINARIO'">
+                    <!--editar-->
+                    <button class="btn btn-warning" [routerLink]="'/admin/horario/'+h.id"><mat-icon> border_color</mat-icon> </button>
+                    <!--eliminar o desactivar-->
+                    <button class="btn btn-danger" (click)= "eliminarHor(h.id)"><mat-icon>restore_from_trash</mat-icon></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mat-card>
+

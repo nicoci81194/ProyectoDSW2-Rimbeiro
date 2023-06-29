@@ -1,0 +1,97 @@
+<mat-card>
+  <div mat-subheader>
+    <h1>Listado general de Reservas</h1>
+  </div>
+  <br />
+  <div class="botones">
+    <div class="filtro-fecha">
+      <mat-form-field>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Seleccionar fecha"
+          [(ngModel)]="selectedDia"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="filtrarHorariosPorDia()"
+      >
+        Filtrar
+      </button>
+      <br>
+      <button
+      routerLink="/admin/add-reservacita"
+      mat-raised-button
+      color="primary"
+      *ngIf="login.getUserRole() !== 'VETERINARIO'"
+    >
+      Agregar Reserva
+    </button>
+    </div>
+    
+  </div>
+  <br />
+
+  <br />
+
+  <table
+    class="table table-bordered table-striped table-sm dt-responsive tabla"
+  >
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Mascota</th>
+        <th>Especie</th>
+        <th>Veterinario</th>
+        <th>Fecha de Reserva</th>
+        <th>Hora</th>
+        <th>Estado</th>
+        <th>Recetas</th>
+        <th *ngIf="login.getUserRole() !== 'VETERINARIO'"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let rc of selectedDia !== null ? reservasPorDia : reservacitas"
+      >
+        <td>
+          {{ rc.mascota.usuario.nombre }} {{ rc.mascota.usuario.apellido }}
+        </td>
+        <td>{{ rc.mascota.nombre }}</td>
+        <td>{{ rc.mascota.especie }}</td>
+        <td>
+          {{
+            rc.veterinario.nombres +
+              " " +
+              rc.veterinario.apellidoPaterno +
+              " " +
+              rc.veterinario.apellidoMaterno
+          }}
+        </td>
+        <td>{{ rc.fecha | date:'yyyy-MM-dd' }}</td>
+        <td>{{ rc.hora }}</td>
+        <td>{{ rc.estado ? "Activo" : "No activo" }}</td>
+        <td [width]="50">
+          <!--muestra la receta x reserva-->
+          <button [routerLink]="getProfileLink(rc.id)" class="btn btn-success">
+            <mat-icon>assignment</mat-icon>
+          </button>
+        </td>
+        <td [width]="130" *ngIf="login.getUserRole() !== 'VETERINARIO'">
+          <!--editar-->
+          <button class="btn btn-warning" [routerLink]="'/admin/reservacita/'+rc.id">
+            <mat-icon> border_color</mat-icon>
+          </button>
+          <!--eliminar o desactivar-->
+          <button class="btn btn-danger" (click) = "eliminarReservacitas(rc.id)">
+            <mat-icon>restore_from_trash</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>

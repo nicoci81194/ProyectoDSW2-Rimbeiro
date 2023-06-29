@@ -1,0 +1,102 @@
+ <!-- PANTALLA PARA VETRINARIO-->
+
+<mat-card class="mt20" *ngIf="loginService.getUserRole() === 'VETERINARIO'">
+    <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <mat-card-header>
+           <mat-card-title>
+            <h1 class="h1-grande">Bienvenido a la interfaz de Rimbeiro</h1>
+           </mat-card-title>
+           <br>
+           <br>
+           <mat-card-subtitle><h2>Veterinario(a): " {{ user.nombre }} {{ user.apellido }} "</h2></mat-card-subtitle>
+          </mat-card-header>
+         
+         <mat-card-content class="ml30">        
+           <mat-divider></mat-divider>
+           <br>
+           <h2>Actividades que puede realizar : </h2>
+           <ul>
+            <li>Actualizar sus datos</li>
+            <li>Ver el listado general de las mascotas registradas</li>
+            <li>Ver el historial clinico mascotas</li>
+            <li>Atender una reserva</li>
+            <li>Revisar su horario</li>
+           </ul>
+           <mat-divider></mat-divider>
+           <br>
+         </mat-card-content>
+       </div>
+     </div>
+    </div>
+ </mat-card>
+
+ <!-- PANTALLA PARA USUARIO-->
+
+ <mat-card class="mt20" *ngIf="loginService.getUserRole() === 'USUARIO'">
+  <div class="container">
+   <div class="row">
+     <div class="col-md-12">
+       <mat-card-header>
+         <mat-card-title>
+          <h1 class="h1-grande">Bienvenido a la interfaz de Rimbeiro</h1>
+         </mat-card-title>
+         <br>
+         <br>
+         <mat-card-subtitle><h2>Usuario(a): " {{ user.nombre }} {{ user.apellido }} "</h2></mat-card-subtitle>
+        </mat-card-header>
+       
+       <mat-card-content class="ml30">        
+         <mat-divider></mat-divider>
+         <br>
+         <h2>Actividades que puede realizar : </h2>
+         <ul>
+          <li>Actualizar sus datos</li>
+          <li>Ver sus macotas registras</li>
+          <li>Ver el historial clinico mascotas</li>
+          <li>Registrar una reserva</li>
+         </ul>
+         <mat-divider></mat-divider>
+         <br>
+       </mat-card-content>
+     </div>
+   </div>
+  </div>
+</mat-card>
+ 
+ <!-- PANTALLA PARA ADMINISTRADOR-->
+
+ <mat-card class="mt20" *ngIf="loginService.getUserRole() === 'ADMIN'">
+  <div class="container">
+   <div class="row">
+     <div class="col-md-12">
+       <mat-card-header>
+         <mat-card-title>
+          <h1 class="h1-grande">Bienvenido a la interfaz de Rimbeiro</h1>
+         </mat-card-title>
+         <br>
+         <br>
+         <mat-card-subtitle><h2>Administrador(a): " {{ user.nombre }} {{ user.apellido }} "</h2></mat-card-subtitle>
+        </mat-card-header>
+       
+       <mat-card-content class="ml30">        
+         <mat-divider></mat-divider>
+         <br>
+         <h2>Actividades que puede realizar : </h2>
+         <ul>
+          <li>Actualizar sus datos</li>
+          <li>Acceder a todos los usuarios registrado</li>
+          <li>Ver el listado general de las mascotas</li>
+          <li>Agendar y atender una reserva</li>
+          <li>Crear un perfil de veterinario</li>
+          <li>Crear un horario para cada veterinario</li>
+         </ul>
+         <mat-divider></mat-divider>
+         <br>
+       </mat-card-content>
+     </div>
+   </div>
+  </div>
+</mat-card>
+ 

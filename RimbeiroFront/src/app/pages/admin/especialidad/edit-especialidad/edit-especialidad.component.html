@@ -1,0 +1,35 @@
+<mat-card>
+  <h1>Actualizar Especialidad</h1>
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <form *ngIf="especialidad" (submit)="actualizarDatosE()">
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Descripcion</mat-label>
+              <textarea
+                name="descripcion"
+                matInput
+                placeholder="Colocar una Especialidad"
+                rows="4"
+                [(ngModel)]="especialidad.descripcion"
+              ></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Estado</mat-label>
+              <mat-select name="estado" [(ngModel)]="especialidad.estado">
+                <mat-option [value]="true">Activo</mat-option>
+                <mat-option [value]="false">Inactivo</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div class="container text-center m15">
+              <button mat-raised-button color="primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

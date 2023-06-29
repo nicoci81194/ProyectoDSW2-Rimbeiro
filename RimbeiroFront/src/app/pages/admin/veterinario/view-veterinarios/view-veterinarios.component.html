@@ -1,0 +1,70 @@
+<mat-card>
+  <div mat-subheader>
+    <h1>Listado Veterinarios</h1>
+  </div>
+  <br />
+  <div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Especialidad</mat-label>
+      <mat-select
+        [(ngModel)]="selectedEspecialidad"
+        name="especialidad"
+        [ngClass]="'custom-select'"
+        (selectionChange)="filtrarVeterinariosPorEspecialidad()"
+      >
+        <mat-option value="">Todas las especialidades</mat-option>
+        <mat-option
+          *ngFor="let especialidad of especialidades"
+          [value]="especialidad.id"
+        >
+          {{ especialidad.descripcion }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button routerLink="/admin/add-veterinario" mat-raised-button color="primary" >Agregar Veterinario</button>
+  </div>
+  <br />
+  <table
+    class="table table-bordered table-striped table-sm dt-responsive tabla"
+  >
+    <thead>
+      <tr>
+        <th>Nombres</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
+        <th>Especialidad</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let v of filtrarPorEspecialidad
+            ? veterinariosPorEspecialidad
+            : veterinarios
+        "
+      >
+        <td>Dr. {{ v.nombres }}</td>
+        <td>{{ v.apellidoPaterno }}</td>
+        <td>{{ v.apellidoMaterno }}</td>
+        <td>{{ v.especialidad.descripcion }}</td>
+        <td>{{ v.estado ? "Activo" : "No activo" }}</td>
+        <td [width]="130">
+          <!--editar-->
+          <button
+            class="btn btn-warning"
+            [routerLink]="'/admin/veterinario/' + v.id"
+          >
+            <mat-icon> border_color</mat-icon>
+          </button>
+          <!--eliminar o desactivar-->
+          <button class="btn btn-danger" (click)="eliminarVet(v.id)">
+            <mat-icon>restore_from_trash</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>

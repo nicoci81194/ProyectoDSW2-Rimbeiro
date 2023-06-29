@@ -1,0 +1,85 @@
+<mat-card>
+    <h1>Agregar Nueva Reserva Cita</h1>
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form (ngSubmit)="formSubmit()">
+                        
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Fecha</mat-label>
+                            <input 
+                            autofocus
+                            name="fecha"
+                            matInput
+                            placeholder="Ingresar Fecha"
+                            [(ngModel)]="reservaCita.fecha"
+                            >
+                        </mat-form-field>
+                        
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Hora</mat-label>
+                            <input 
+                            name="hora"
+                            matInput
+                            placeholder="Digite la hora de la Reserva"
+                            [(ngModel)]="reservaCita.hora"
+                            >
+                        </mat-form-field>
+
+                        <!-- <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Id Mascota</mat-label>
+                            <input
+                            name="mascota"
+                            matInput
+                            placeholder="Ingresar el Id Mascota"
+                            [(ngModel)]="reservaCita.mascota.id"
+                            >
+                        </mat-form-field> -->
+
+                        <!-- <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Id Veterinario</mat-label>
+                            <input
+                            name="veterinario"
+                            matInput
+                            placeholder="Ingresar el Id Veterinario"
+                            [(ngModel)]="reservaCita.veterinario.id"
+                            >
+                        </mat-form-field> -->
+
+                        <mat-form-field appearance="fill" class="mt20 w100">
+                            <mat-label>Mascota</mat-label>
+                            <mat-select name="mascota" [(ngModel)]="reservaCita.mascota.id">
+                                <mat-option *ngFor="let m of mascotas" [value]="m.id">
+                                    {{ m.nombre }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" class="mt20 w100">
+                            <mat-label>Veterinario</mat-label>
+                            <mat-select name="veterinario" [(ngModel)]="reservaCita.veterinario.id">
+                                <mat-option *ngFor="let v of veterinarios" [value]="v.id">
+                                    {{v.nombres}} {{v.apellidoPaterno}} {{v.apellidoMaterno}}  - {{v.especialidad.descripcion}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <!-- Por defecto en el back esta como true
+                        <mat-slide-toggle class="mt20" [checked] = "true" color="primary" [(ngModel)]="reservaCita.estado"> 
+                            Estado de Reserva Cita
+                        </mat-slide-toggle> -->
+
+                        <div class="container text-center mt15">
+                            <button mat-raised-button color="primary">Guardar</button>
+                        </div>
+                        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+{{ reservaCita | json }}

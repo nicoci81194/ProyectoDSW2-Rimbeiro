@@ -1,0 +1,24 @@
+<mat-card>
+    <mat-action-list>
+      <div mat-subheader>Menu</div>
+      <button routerLink = "/vet-dashboard" mat-list-item>
+        <mat-icon mat-list-icon>home</mat-icon> Inicio
+      </button>
+      <button mat-list-item routerLink = "/vet-dashboard/profile">
+        <mat-icon mat-list-icon>account_circle</mat-icon>Perfil
+      </button>
+
+      <button mat-list-item routerLink = "/vet-dashboard/mascotas">
+        <mat-icon mat-list-icon>pets</mat-icon>Mascotas
+      </button>
+      
+      <button mat-list-item routerLink = "/vet-dashboard/reservacitas">
+        <mat-icon mat-list-icon>local_hospital</mat-icon>Reservas
+      </button>
+
+      <button mat-list-item routerLink = "/vet-dashboard/horarios">
+        <mat-icon mat-list-icon>today</mat-icon>Horario
+      </button>
+ 
+    </mat-action-list>
+  </mat-card>

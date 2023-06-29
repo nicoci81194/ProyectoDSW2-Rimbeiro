@@ -1,0 +1,132 @@
+<mat-card>
+  <h1>Actualizar Mascota</h1>
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <form *ngIf="mascota" (submit)="actualizarDatosM()">
+            <mat-form-field appearance="fill" class="mt20 w100">
+              <mat-label>Nombre de Usuario </mat-label>
+              <mat-select
+                name="usuario"
+                [(ngModel)]="mascota.usuario.id"
+                disabled="true"
+              >
+                <mat-option *ngFor="let u of usuarios" [value]="u.id">
+                  {{ u.nombre }} {{ u.apellido }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Nombre de la mascota</mat-label>
+              <input
+                autofocus
+                type="text"
+                name="nombre"
+                matInput
+                placeholder="Ingresar Nombres"
+                [(ngModel)]="mascota.nombre"
+              />
+            </mat-form-field>
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Especie</mat-label>
+              <mat-select [(ngModel)]="mascota.especie" name="especie" matInput>
+                <mat-option *ngIf="especiePermitida('perro')" value="perro"
+                  >Perro</mat-option
+                >
+                <mat-option *ngIf="especiePermitida('gato')" value="gato"
+                  >Gato</mat-option
+                >
+                <mat-option *ngIf="especiePermitida('conejo')" value="conejo"
+                  >Conejo</mat-option
+                >
+                <mat-option *ngIf="especiePermitida('loro')" value="loro"
+                  >Loro</mat-option
+                >
+                <mat-option *ngIf="especiePermitida('perico')" value="perico"
+                  >Perico</mat-option
+                >
+                <mat-option *ngIf="especiePermitida('hamster')" value="hamster"
+                  >Hamster</mat-option
+                >
+                <mat-option *ngIf="especiePermitida('huron')" value="huron"
+                  >Huron</mat-option
+                >
+                <mat-option *ngIf="especiePermitida('otro')" value="otro"
+                  >Otro</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Raza</mat-label>
+              <input
+                autofocus
+                type="text"
+                name="raza"
+                matInput
+                placeholder="Ingresar Raza"
+                [(ngModel)]="mascota.raza"
+              />
+            </mat-form-field>
+
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Fecha de Nacimiento</mat-label>
+              <input
+                autofocus
+                type="text"
+                name="fechaNacimiento"
+                matInput
+                placeholder="Ingresar fecha de Nacimiento"
+                [(ngModel)]="mascota.fechaNacimiento"
+                [matDatepicker]="picker"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Peso</mat-label>
+              <input
+                autofocus
+                type="text"
+                name="peso"
+                matInput
+                placeholder="Ingresar el Peso"
+                [(ngModel)]="mascota.peso"
+              />
+            </mat-form-field>
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Caracteristicas</mat-label>
+              <textarea
+                name="caracteristicas"
+                matInput
+                placeholder="Colocar Rasgos de la Mascota"
+                rows="5"
+                [(ngModel)]="mascota.caracteristicas"
+              ></textarea>
+            </mat-form-field>
+            <!-- <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Caracteristicas</mat-label>
+                            <input
+                            autofocus
+                            type="text"
+                            name="caracteristicas"
+                            matInput
+                            placeholder="Ingresar Caracteristicas"
+                            [(ngModel)] = "mascota.caracteristicas"
+                            >
+                        </mat-form-field> -->
+
+            <div class="container text-center">
+              <button mat-raised-button color="primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,46 @@
+<mat-card style="margin-left: 10px;">
+    <h1>Detalles de mi perfil</h1>
+    <mat-card-content>
+      <div class = "bootstrap-wrapper">       
+        <div class = "container">
+          <div class = "text-center">
+
+            <div class="containerfoto">
+              <div mat-card-avatar class="example-header-image"></div>
+            </div>
+            <h1 class="mt20">{{ user.nombre }} {{ user.apellido }}</h1>
+          </div>
+          <div class = "row">
+            <div class = "col-md-10 offset-md-1">
+              <table class = "table text-center">
+                <tr>
+                  <td>Rol</td>
+                  <td>{{ user.authorities[0].authority }}</td>
+                </tr>
+                <tr>
+                  <td>Nombre de usuario</td>
+                  <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                  <td>Correo Electronico</td>
+                  <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                  <td>Teléfono</td>
+                  <td>{{ user.telefono }}</td>
+                </tr>              
+                <tr>
+                  <td>Estado</td>
+                  <td>{{ user.enabled ? "Activo" : "No activo"}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <mat-card-actions class = "text-center">
+        <button [routerLink]="'/admin/usuario/'+user.id" mat-raised-button color = "primary">Actualizar Datos</button>
+      </mat-card-actions>
+    </mat-card-content>
+  

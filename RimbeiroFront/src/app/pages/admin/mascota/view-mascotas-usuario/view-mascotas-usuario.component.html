@@ -1,0 +1,42 @@
+
+<mat-card>
+
+    <div mat-subheader>
+        <h1>Listado de mascotas del usuario: " {{ mascotas.length > 0 ? mascotas[0].usuario.username : '' }} "</h1>
+    </div>
+
+    <!---->
+
+    <div *ngIf="mascotas.length === 0">
+        <p>Todavia no tiene mascotas registradas</p>
+        <button routerLink="/admin/add-mascota" mat-raised-button color="primary">Registrar Mascota</button>
+    </div>
+    <br>
+    <br>
+    <!---->
+    
+    <table class="table table-bordered table-striped table-sm dt-responsive tabla">
+        <thead>
+            <tr>        
+                <th>Nombre</th>
+                <th>Especie</th>
+                <th>Raza</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Peso</th>
+                <th>Caracteristicas</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let m of mascotas">
+                <td>{{m.nombre}}</td>
+                <td>{{m.especie}}</td>
+                <td>{{m.raza}}</td>
+                <td>{{m.fechaNacimiento}}</td>
+                <td>{{m.peso}}</td>
+                <td>{{m.caracteristicas}}</td>
+                <td>{{m.estado ? "Activo" : "No activo"}}</td>
+            </tr>
+        </tbody>
+    </table>
+</mat-card>

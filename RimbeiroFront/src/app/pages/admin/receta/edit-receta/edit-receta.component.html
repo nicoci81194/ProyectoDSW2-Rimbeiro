@@ -1,0 +1,56 @@
+<mat-card>
+    <h1>Actualizar Receta</h1>
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form *ngIf= "receta" (submit)= "actualizarDatosR()">
+                        
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Diagnostico</mat-label>
+                            <input 
+                            autofocus
+                            type="text"
+                            name="diagnostico"
+                            matInput
+                            placeholder="Ingresar Diagnostico"
+                            [(ngModel)]="receta.diagnostico"
+                            >
+                        </mat-form-field>
+                        
+                        <mat-form-field class="w100" appearance="outline">
+                         <mat-label>Indicaciones</mat-label>
+                         <textarea 
+                         name="indicaciones"
+                         matInput
+                         placeholder="Digite las indicaciones de la receta"
+                         rows="2"
+                         [(ngModel)]="receta.indicaciones"
+                         >
+                        </textarea>
+                        </mat-form-field>
+
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Id Reserva Cita</mat-label>
+                            <input 
+                            type="text"
+                            name="reservaCita"
+                            matInput
+                            placeholder="Ingresar Id Reserva Cita"
+                            [(ngModel)]="receta.reservaCita.id"
+                            >
+                        </mat-form-field>
+
+                        <div class="container text-center mt15">
+                            <button mat-raised-button color="primary">Actualizar</button>
+                        </div>
+
+                        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+{{ receta | json }}

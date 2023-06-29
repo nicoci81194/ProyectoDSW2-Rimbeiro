@@ -1,0 +1,97 @@
+<!--
+<div class="container text-center mt20">
+    <button routerLink="/admin/add-usuario" mat-raised-button color="primary" >Agregar Usuario </button>
+</div>
+<mat-card class="mt10" *ngFor= "let u of usuarios">
+    <mat-list>
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-subtitle>
+                {{u.id}}
+            </mat-card-subtitle>
+            <mat-card-title>
+                {{u.username}}
+            </mat-card-title>
+            <mat-card-title>
+                {{u.password}}
+            </mat-card-title>
+            <mat-card-title>
+                {{u.nombre}}
+            </mat-card-title>
+            <mat-card-title>
+                {{u.apellido}}
+            </mat-card-title>
+            <mat-card-title>
+                {{u.email}}
+            </mat-card-title>
+            <mat-card-title>
+                {{u.telefono}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-card-actions>
+                <button mat-flat-button color="primary" class="ml20" >Actualizar</button>
+                <button mat-flat-button color="warn" class="ml10"  >Eliminar</button>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-list>
+</mat-card>
+-->
+<mat-card>
+    <div mat-subheader>
+        <h1>Listado general de Usuarios registrados</h1>
+    </div>
+    <br>
+    <div class="botones">
+        <mat-form-field>
+            <input matInput placeholder="Buscar">
+            <button mat-button matSuffix>
+              <mat-icon>search</mat-icon>
+            </button>
+          </mat-form-field>
+        <button routerLink="/admin/add-usuario" mat-raised-button color="primary" >Agregar Usuario </button>      
+    </div>
+
+    <br>
+
+    <table class="table table-bordered table-striped table-sm dt-responsive tabla">
+        <thead>
+            <tr>        
+                <th>Usuario</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Correo electronico</th>
+                <th>Telefono</th>
+                <th>Estado</th>
+                <th>Mascotas</th>
+                <th>Acciones</th>
+                <th></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of usuarios">
+                <td>{{u.username}}</td>
+                <td>{{u.nombre}}</td>
+                <td>{{u.apellido}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.telefono}}</td>
+                <td>{{u.enabled ? "Activo" : "No activo"}}</td>
+                <td [width]="50">
+                    <!--muestra las mascotas x usuario-->
+                    <button [routerLink]="'/admin/mascota-usuario/'+u.id" class="btn btn-success"><mat-icon>pets</mat-icon></button>
+                </td>
+                <td [width]="260">
+                    <!--editar-->
+                    <button class="btn btn-warning" [routerLink]="'/admin/usuario/'+u.id"><mat-icon> border_color</mat-icon> </button>
+                    <!--eliminar-->
+                    <button class="btn btn-danger" (click)= "eliminarUsuario(u.id)"><mat-icon>restore_from_trash</mat-icon></button>                   
+                    <!-- activar -->
+                    <button class="btn btn-danger" (click)= "activarUsuario(u.id)"><mat-icon>brightness_5</mat-icon></button>
+                    <!-- desactivar -->
+                    <button class="btn btn-danger" (click)= "desactivarUsuario(u.id)"><mat-icon>brightness_2</mat-icon></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mat-card>

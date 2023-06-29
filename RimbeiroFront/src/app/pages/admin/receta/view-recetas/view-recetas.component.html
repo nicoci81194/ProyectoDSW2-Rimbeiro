@@ -1,0 +1,45 @@
+<mat-card>
+    <div mat-subheader>
+        <h1>Receta de la Mascota: " {{ recetas.length > 0 ? recetas[0].reservaCita.mascota.nombre : '' }} "</h1>
+    </div>
+    
+    <div *ngIf="recetas.length === 0">
+        <p>No hay recetas disponibles</p>
+        <button routerLink="/admin/add-receta" mat-raised-button color="primary">Registrar Receta</button>
+    </div>
+<!--
+    <table class="table table-bordered table-striped table-sm dt-responsive tabla" *ngIf="recetas.length > 0">
+        <thead>
+            <tr>        
+                <th>Nombre</th>
+                <th>Especie</th>
+                <th>Raza</th>
+                <th>Diagnostico</th>
+                <th>Indicicaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let r of recetas">
+                <td>{{r.reservaCita.id}}</td>
+                <td>{{r.diagnosticos.titulo}}</td>
+                <td>{{r.diagnosticos.detalle}}</td>               
+            </tr>
+        </tbody>
+    </table>
+-->
+
+<div *ngFor="let receta of recetas">
+    <h2>Receta ID: {{ receta.id }}</h2>
+    <p>Reserva Cita: {{ receta.reservaCita.id }}</p>
+    <h3>Diagnósticos:</h3>
+    <ul>
+        <li *ngFor="let diagnostico of recetas.diagnosticos">
+          <h3>{{ diagnostico.titulo }}</h3>
+          <p>{{ diagnostico.detalle }}</p>
+        </li>
+      </ul>
+      
+  </div>
+  
+
+</mat-card>

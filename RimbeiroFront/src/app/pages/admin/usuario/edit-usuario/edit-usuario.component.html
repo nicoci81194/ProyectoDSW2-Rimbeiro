@@ -1,0 +1,83 @@
+<mat-card>
+    <h1>Actualizar Nuevo Usuario</h1>
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form *ngIf= "usuarios" (submit)= "actualizarDatosU()">
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Nombres</mat-label>
+                            <input
+                            autofocus
+                            type="text"
+                            name="nombre"
+                            matInput
+                            placeholder="Ingresar nombres"
+                            [(ngModel)] = "usuarios.nombre"
+                            >
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Apellido</mat-label>
+                            <input
+                            autofocus
+                            type="text"
+                            name="apellido"
+                            matInput
+                            placeholder="Ingresar apellidos"
+                            [(ngModel)] = "usuarios.apellido"
+                            >
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Correo Electronico</mat-label>
+                            <input
+                            autofocus
+                            type="text"
+                            name="email"
+                            matInput
+                            placeholder="Ingresar correo electronico"
+                            [(ngModel)] = "usuarios.email"
+                            >
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Celular</mat-label>
+                            <input
+                            autofocus
+                            type="text"
+                            name="telefono"
+                            matInput
+                            placeholder="Ingresar celular"
+                            [(ngModel)] = "usuarios.telefono"
+                            >
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Nombre de Usuario</mat-label>
+                            <input
+                            autofocus
+                            type="text"
+                            name="username"
+                            matInput
+                            placeholder="Ingresar nombre de usuario"
+                            [(ngModel)] = "usuarios.username"
+                            >
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Contraseña</mat-label>
+                            <input
+                            autofocus
+                            type="password"
+                            name="password"
+                            matInput
+                            placeholder="Ingresar contraseña"
+                            [(ngModel)] = "usuarios.password"
+                            >
+                        </mat-form-field>
+                        
+                        <div class="container text-center">
+                            <button mat-raised-button color="primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
